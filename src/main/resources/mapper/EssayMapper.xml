@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyy.kcbweekly.weekly.mapper.EssayMapper">
+    <select id="selectPageExt" resultType="com.hyy.kcbweekly.weekly.entity.Essay">
+        select * from essay
+    </select>
+
+    <select id="selectBefore" parameterType="int" resultType="com.hyy.kcbweekly.weekly.entity.Essay">
+        select * from essay where id=(select max(id) from essay where id &lt; #{id})
+    </select>
+
+    <select id="selectAfter" parameterType="int" resultType="com.hyy.kcbweekly.weekly.entity.Essay">
+        select * from essay where id=(select min(id) from essay where id > #{id})
+    </select>
+
+    <!--    <select id="selectLat" resultType="com.hyy.kcbweekly.weekly.entity.Essay">-->
+    <!--        select * from essay where id=(select max(id))-->
+    <!--    </select>-->
+
+
+</mapper>

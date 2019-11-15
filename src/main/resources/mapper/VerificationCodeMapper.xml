@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyy.kcbweekly.weekly.mapper.VerificationCodeMapper">
+    <resultMap id="VerificationCodeMap" type="com.hyy.kcbweekly.weekly.entity.VerificationCode">
+        <result column="id" property="id"/>
+        <result column="mobile_number" property="mobileNumber"/>
+        <result column="code" property="code"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <select id="findToken" resultMap="VerificationCodeMap" parameterType="java.lang.String">
+        select * from token_code where token = #{token}
+    </select>
+    <select id="findVerificationCodeByMobile" resultMap="VerificationCodeMap" parameterType="java.lang.String">
+        select * from verification_code where mobile_number = #{mobile}
+    </select>
+
+    <select id="findMobileCode" parameterType="java.lang.String" resultMap="VerificationCodeMap">
+        select * from verification_code where mobile_number = #{mobile} and code = #{code}
+    </select>
+</mapper>

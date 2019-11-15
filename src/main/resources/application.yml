@@ -1,0 +1,32 @@
+# DataSource Config
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/news?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: root
+# 配置sql打印日志
+mybatis-plus:
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.hyy.kcbweeky.weekly.entity
+
+  configuration:
+    # 配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    # 打印sql日志  正式环境需要注释掉
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+#wedOrigin:
+#  name: [192.168.1.1,127.0.0.1,192.168.1.17]
+#
+#
+#KCB: 123
